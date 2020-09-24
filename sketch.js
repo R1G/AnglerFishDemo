@@ -21,7 +21,7 @@ let player = {
         circle(this.x,this.y,50);
 
         //Give the player velocity towards a mouse
-        if(mouseIsPressed && int(dist(x,y,mouseX,mouseY)) > 5) {
+        if(mouseIsPressed && int(dist(x=100,y=100,mouseX,mouseY)) > 5) {
             this.x += ((mouseX-this.x)/meter)*playerSpeed;
             this.y += ((mouseY-this.y)/meter)*playerSpeed;
         }
