@@ -88,12 +88,12 @@ var player = {
         circle(center.x, center.y, this.size);
 
         //MOUSE CONTROLS
-        //var xdiff = (mouseX - center.x);
-        //var ydiff = (mouseY - center.y);
+        var xdiff = (mouseX - center.x);
+        var ydiff = (mouseY - center.y);
 
         //CAMERA CONTROLS
-        var xdiff = (position.x - this.x);
-        var ydiff = (position.y - this.y);
+        //var xdiff = (position.x - this.x);
+        //var ydiff = (position.y - this.y);
 
         if(abs(ydiff) > this.size || abs(xdiff) > this.size) {
             this.x += xdiff/meter*playerSpeed;
