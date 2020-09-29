@@ -33,14 +33,50 @@ Promise.all([
     faceapi.nets.faceExpressionNet.loadFromUri("/models")
 ]).then(startVideo);
 
-//starts stream to video element, used after models are loaded
-function startVideo() {
-    navigator.getUserMedia( 
-        {video: {} }, 
-        stream => (video.srcObject = stream),
-        err => console.error(err)
-    );
+const contraints = {
+    video: true
+};
+
+function startVideo(){
+    console.log(navigator.appName);
+    navigator.mediaDevices.getUserMedia(
+        {video : true}
+    )
+    .then(function(stream) {
+        video.srcObject = stream;
+    })
+    .catch(function(err) {
+        console.log("you done fucked up");
+        console.log(err);
+    });
 }
+
+
+// async function startVideo(){
+//     let stream = null;
+//     const mediaD = navigator.mediaDevices;
+//     try {
+//         stream = await navigator.mediaDevices.getUserMedia(
+//             {video: true}
+//         );
+//         /* use the stream */
+//       } catch(err) {
+//           console.log(err);
+//       }
+//     video.srcObject = stream;
+// }
+
+//starts stream to video element, used after models are loaded
+// function startVideo() {
+//     Navigator.mediaDevices.getUserMedia( 
+//         {video: {} }, 
+//         stream => (video.srcObject = stream),
+//         err => console.log("you bitch")
+//     );
+// }
+	
+
+
 
 video.addEventListener("playing", () => {
     // face-api detects faces every 100ms
@@ -61,7 +97,7 @@ video.addEventListener("playing", () => {
             position.y = Math.round(detections[0].landmarks.positions[0]._y);
             expression_color = expressions_to_color(detections[0].expressions);
         }
-    }, 100);
+    }, 1);
 })
 
 function setup() {
